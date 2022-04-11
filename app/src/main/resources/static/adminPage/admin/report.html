@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>어드민</title>
+    <link rel="stylesheet" type="text/css" href="report.css">
+</head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+
+<body>
+
+<div th:replace="/fixed/header :: header"></div>
+<a href="memberList2.html"><span id="imgtext1">ADMINSTRATOR</span></a>
+   <a href="memberList2.html"><span id="imgtext2">유저관리</span></a>
+                  <a href="report.html"><span id="imgtext3">신고관리</span></a>
+                   <a href="TravelBoard.html"><span id="imgtext4">여행지관리</span></a>
+                 <a href="../../customorCenter/noticeBoard/noticeBoard.html"><span id="imgtext5">고객센터</span></a>
+<hr>
+
+<h1 class ="maintitle">관리자 l 신고 관리</h1>
+
+
+<div class="container">
+    <form >
+        <table class="table" id="table">
+           <thead>
+  <tr>
+    <th class ="th-1">타입</th>
+    <th class ="th-2">글번호</th>
+    <th class ="th-3">신고자아이디</th>
+    <th class ="th-4">닉네임</th>
+    <th class ="th-5">이메일</th>
+    <th class ="th-6">신고사유</th>
+    <th class ="th-7">신고날짜</th>
+        <th class ="th-9">페이지로 이동</th>
+  </tr>
+</thead>
+<tbody>
+<style>table {border: medium solid gray;border-collapse: collapse;width: 100%; margin-top :60px;}
+ th{font-family: Comic Sans MS;border: thin solid #6495ed;padding: 5px;background-color: #fb9300;}
+ td{font-family: Comic Sans MS;border: thin solid white;padding: 5px;text-align: center;}.odd{background:white;}
+ img{padding:5px; border:solid; border-color: #dddddd #aaaaaa #aaaaaa #dddddd; border-width: 1px 2px 2px 1px; background-color:white;}</style>
+  <tr>
+    <td >게시글</td>
+    <td >9452</td>
+    <td >dsdlkgn3311</td>
+    <td >trip2022</td>
+    <td >dldlkgn311@naver.com</td>
+    <td >부적절한 이미지</td>
+    <td >2022-03-04</td>
+      <td   ><button id="btn2"><a href = "report_detail.html">이동</button></a></td>
+  </tr>
+  <tr>
+   <td >게시글</td>
+    <td>17836</td>
+    <td>fgj1t86</td>
+    <td>가보자제주</td>
+    <td>fgjft86@gmail.com</td>
+    <td>부적절한 이미지</td>
+    <td>2022-03-04</td>
+          <td   ><button id="btn2"><a href = "report_detail.html">이동</button></a></td>
+      
+  </tr> <tr>
+      <td >게시글</td>
+    <td>15723</td>
+    <td>sknflks212</td>
+    <td>여행가11</td>
+    <td>sknflks212@naver.com</td>
+    <td>부적절한 이미지</td>
+    <td>2022-03-04</td>
+          <td   ><button id="btn2"><a href = "report_detail.html">이동</button></a></td>
+     
+  </tr> <tr>
+      <td >댓글</td>
+    <td>7490</td>
+    <td>chance010</td>
+    <td>혼저옵서예</td>
+    <td>chance010@naver.com</td>
+    <td>부적절한 이미지</td>
+    <td>2022-03-04</td>
+      <td   ><button id="btn2"><a href = "report_detail.html">이동</button></a></td>
+     
+  </tr> <tr>
+      <td >게시글</td>
+    <td>6822</td>
+    <td>hello2163</td>
+    <td>놀당갑서22</td>
+    <td>hello2163@hanmail.net</td>
+    <td>부적절한 댓글</td>
+    <td>2022-03-04</td>
+      <td   ><button id="btn2"><a href = "report_detail.html">이동</button></a></td>
+      
+  </tr> <tr>
+        <td >댓글</td>
+    <td>7524</td>
+    <td>yoyo3019</td>
+    <td>제주도가자</td>
+    <td>yoyo3019@naver.com</td>
+    <td>부적절한 댓글</td>
+    <td>2022-03-04</td>
+         <td   ><button id="btn2"><a href = "report_detail.html">이동</button></a></td>
+   
+  </tr> <tr>
+   <td >게시글</td>
+    <td>12452</td>
+    <td>right9090</td>
+    <td>놀당12</td>
+    <td>right9090@naver.com</td>
+    <td>부적절한 이미지</td>
+    <td>2022-03-04</td>
+       <td   ><button id="btn2"><a href = "report_detail.html">이동</button></a></td>
+   
+  </tr>
+    <div id="freetext1">
+                    ▷ 총 7개의 신고된 게시물이 있습니다.
+                </div>
+
+                <div id="select">
+
+          
+
+                    <form id="form" action="">
+                        <select name="type" id="">
+                            <option value="1">글번호</option>
+                            <option value="2">아이디</option>
+                            <option value="3">닉네임</option>
+                        </select>
+                    </form>
+
+                    <input id="selectinput" type="text">
+
+                   <button>검색</button>
+                </div>
+   <script>
+function deleteRow(ths){
+    var ths = $(ths);
+    
+    ths.parents("tr").remove();
+}
+</script>
+
+</tbody>
+</table>
+</div>
+</body>
+</html>
