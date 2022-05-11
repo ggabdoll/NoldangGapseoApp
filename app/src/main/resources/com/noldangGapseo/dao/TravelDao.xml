@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.noldangGapseo.dao.TravelDao">
+
+    <resultMap type="travelResponse" id="travelReMap">
+    </resultMap>
+
+    <resultMap id="travelMap" type="Travel"></resultMap>
+
+    <resultMap id="companionMap" type="companion"></resultMap>
+
+    <resultMap id="todoMap" type="todo"></resultMap>
+
+    <resultMap id="costMap" type="cost"></resultMap>
+
+    <resultMap id="scheduleMap" type="Schedule"></resultMap>
+
+    <resultMap id="tagMap" type="tag"></resultMap>
+
+    <!-- 유저의 여행 리스트를 불러온다 -->
+    <select id="travelList" resultMap="travelMap">
+        SELECT      t.travel_id , t.travel_name,
+                    CONCAT(t.start_date, '~' ,t.end_date) period,
+                    DATEDIFF(DATE_FORMAT(t.start_date , '%Y-%m-%d.'),
+                    DATE_FORMAT(now() ,'%Y-%m-%d.')) d_day,
+                    t.color
+        FROM        travel t,
+                    `user` u,
+                    companion c
+        WHERE       t.user_id = u.user_id
+        and         u.nick_name = #{nickName}
+        or          c.companion_id = #{companionId}
+        and         c.travel_id = t.travel_id
+        and         c.state = 'Y'
+        group by    t.travel_id
+        ORDER BY    t.start_date ASC;
+    </select>
+
+    <!-- 여행을 생성한다. -->
+    <insert id="addTravel" parameterType="Travel" keyProperty="travelId" keyColumn="travel_id" useGeneratedKeys="true">
+        INSERT
+        INTO    travel 	(user_id, travel_name, start_date, end_date, color)
+        values  		(#{userId}, #{travelName}, #{startDate}, #{endDate}, #{color})
+    </insert>
+
+    <!-- 여행 태그 설정 -->
+    <insert id="addTag">
+        INSERT
+        INTO    travel_tag_list     (tag_id, travel_id)
+        values 				        (#{tagId}, #{travelId} )
+    </insert>
+
+    <!-- 여행을 루트를 생성한다. -->
+    <insert id="setRoute">
+        INSERT
+        into    travel_schedule (travel_id, destination_id, `day`, route_index)
+        select  #{travelId} as travel_id,
+                A.destination_id ,
+                A.day,
+                @rownum:=@rownum+1 as route_index
+        from    (
+                SELECT      #{travelId},
+                            d.destination_id,
+                            #{day} as day,
+                            t.tag_name
+                FROM        destination d,
+                            travel_schedule ts,
+                            destiantion_tag_list dtl,
+                            tag t,
+                            (SELECT @rownum:=0) TMP
+                where       d.user_id = 1
+                and         dtl.tag_id = t.tag_id
+                and         dtl.destination_id = d.destination_id
+                and        ( ts.travel_id = #{travelId}
+                            or  ts.destination_id  != d.destination_id)
+                and         ts.destination_id  != d.destination_id
+                and         t.tag_id in
+        <foreach collection="tagList" item="tagList" index="index" open="(" close=")" separator=",">
+                 #{tagList}
+        </foreach>
+                group by    d.destination_id, t.tag_name
+                order by    rand() limit 4
+                ) A
+    </insert>
+
+
+    <!-- 여행 하나를 불러온다 -->
+    <select id="getTravel" resultMap="travelMap" parameterType="Integer">
+        SELECT      t.travel_name ,cost.total_cost,
+                    u.nick_name,
+                    CONCAT(t.start_date, '~' ,t.end_date) period,
+                    DATEDIFF(DATE_FORMAT(t.end_date , '%Y-%m-%d.') , DATE_FORMAT(t.start_date ,'%Y-%m-%d.')) d_day,
+                    t.start_date,
+                    t.end_date
+        FROM        travel t , `user` u ,
+                    (
+                    SELECT sum(c.cost) total_cost
+                    from cost c
+                    WHERE c.travel_id = #{travelId}
+                    ) as cost
+        where       t.travel_id = #{travelId}
+        and         t.user_id = u.user_id
+        group by    t.travel_name;
+    </select>
+
+    <!-- 여행 루트를 불러온다. -->
+    <select id="getRoute" resultMap="scheduleMap">
+        SELECT 		ts.schedule_id,
+                    ts.destination_id,
+                    d.destination_name,
+                    d.contents,
+                    dt.destination_type_name type_name,
+                    d.latitude,
+                    d.longitude,
+                    ts.route_index
+        FROM 		travel_schedule ts , destination d , destination_type dt
+        WHERE 		ts.travel_id = #{travelId}
+        and 		ts.`day` = #{day}
+        and 		ts.destination_id = d.destination_id
+        and 		d.destination_type_id = dt.destination_type_id
+        GROUP by 	route_index
+    </select>
+
+    <!-- 루트의 순서를 변경한다. -->
+    <update id="updateRoute">
+        UPDATE 	travel_schedule
+        set 	route_index = #{routeIndex}
+        WHERE 	schedule_id = #{id}
+    </update>
+
+    <!-- 여행의 기간을 가져온다. -->
+    <select id="getPeriod" resultType="Integer" parameterType="Integer">
+        SELECT 	DATEDIFF(DATE_FORMAT(t.end_date , '%Y-%m-%d.') , DATE_FORMAT(t.start_date ,'%Y-%m-%d.')) period
+        FROM 	travel t
+        WHERE 	t.travel_id = #{travelId}
+    </select>
+
+    <!-- 여행의 이름을 바꾼다. -->
+    <update id="updateName">
+        UPDATE  travel
+        set     travel_name = #{name}
+        WHERE   travel_id = #{id};
+    </update>
+
+    <!-- 여행의 동행자를 불러온다. -->
+    <select id="companionList" resultMap="companionMap" parameterType="Integer">
+        SELECT      u.nick_name , c.state
+        from        companion c , `user` u
+        WHERE       c.travel_id = #{travelId}
+        and         u.user_id = c.companion_id
+        order by    c.state desc;
+    </select>
+
+    <!-- 여행의 투두리스트 3개를 불러온다. -->
+    <select id="todoLength3" resultMap="todoMap" parameterType="Integer">
+        SELECT      name , t2.status
+        from        todo t2
+        WHERE       t2.travel_id = #{travelId}
+        order by    t2.reg_date desc
+        Limit       3;
+    </select>
+
+    <!-- 여행의 투두리스트를 불러온다. -->
+    <select id="todoList" resultMap="todoMap" parameterType="Integer">
+        SELECT      t2.todo_id , name , t2.status
+        from        todo t2
+        WHERE       t2.travel_id = #{travelId}
+        order by    t2.reg_date desc;
+    </select>
+
+    <!-- 투두 추가하기 -->
+    <insert id="addTodo">
+        INSERT
+        into    todo (name, travel_id)
+        values  (#{name},#{id});
+    </insert>
+
+
+    <!-- 투두 상태 변경 -->
+    <update id="setTodoStatus" parameterType="Integer">
+        UPDATE 	todo t
+        set 	t.status = #{status}
+        WHERE 	t.todo_id = #{todoId};
+    </update>
+
+    <!-- 투두 항목 변경 -->
+    <update id="setTodoName">
+        UPDATE 	todo t
+        set 	t.name  = #{name}
+        WHERE 	t.todo_id = #{todoId};
+    </update>
+
+    <!-- 투두 삭제 -->
+    <delete id="deleteTodo">
+        DELETE
+        FROM 	todo
+        WHERE 	todo_id = #{todoId};
+    </delete>
+
+    <!-- 비용 항목을 불러온다. -->
+    <select id="costList" resultMap="costMap" parameterType="Integer">
+        SELECT      c.cost_id , c.name , c.cost
+        from        cost c
+        WHERE       c.travel_id = #{travelId}
+        order by    c.reg_date desc;
+    </select>
+
+    <!-- 비용을 추가한다. -->
+    <insert id="addCost" parameterType="cost" keyProperty="costId" keyColumn="cost_id" useGeneratedKeys="true">
+        INSERT
+        into 	cost (name, cost, travel_id)
+        values 	(#{name}, #{cost}, #{travelId});
+    </insert>
+
+    <!-- 비용을 업데이트한다. -->
+    <update id="setCost" parameterType="cost">
+        UPDATE 	cost
+        set 	cost = #{cost} , name = #{name}
+        WHERE 	cost_id = #{costId};
+    </update>
+
+    <!-- 비용을 삭제한다. -->
+    <delete id="deleteCost">
+        DELETE
+        FROM 	cost
+        WHERE 	cost_id = #{costId};
+    </delete>
+
+    <!-- 여행을 삭제 한다. -->
+    <delete id="deleteTravel">
+        DELETE
+        FROM 	travel
+        WHERE 	travel_id = #{travelId}
+    </delete>
+
+    <!-- 여행 초대하기 -->
+    <insert id="invite">
+        INSERT
+        into 	companion (travel_id, companion_id)
+        values 	(#{travelId}, #{companionId})
+    </insert>
+
+</mapper>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>예약페이지</title>
+    <title>항공권 예약페이지</title>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="reserv.css">
@@ -19,56 +19,198 @@
 
 <body>
 <!--헤더영역 -->
-<div class="headers"></div>
+    <div class="headers"></div>
 <!-- 바디영역-->
-<div class="container w-75" id ="wrap">
-    <div class="mini-container border-dark">
-        <div class="tap-menu">
-
-        </div>
-
-        <div class="content-title" >
-            <h2>실시간 국내 항공권 예약</h2>
-            <p class="mt-3">국내선 전체 7개 항공사 실시간 최저 비교</p>
-        </div>
-        <div class="search">
-            <div class="search-option">
-                <p>항공권검색</p>
-                <div>
-                    <button onclick="view(1)">왕복</button>
-                    <button onclick="view(2)">편도</button>
+    <div class="container w-75" id ="wrap">
+        <div class="mini-container">
+            <div class="tap-menu">
+                <div class="row row-cols-md-2 text-center">
+                    <button class ="col-4 tap-check">항공권</button>
+                    <button class ="col-4 tap-uncheck" id="hotel-link-btn">숙박</button>
                 </div>
             </div>
-            <div class="search-value">
 
+            <div class="content-title" >
+                <h2>실시간 국내 항공권 예약</h2>
+                <p class="mt-3">국내선 전체 7개 항공사 실시간 최저 비교</p>
+            </div>
+            <div class="search">
+                <form>
+                <div class="search-option">
+                    <p>항공권검색</p>
+                    <div>
+                        <button class="view-clicked" onclick="view(1)">왕복</button>
+                    </div>
+                </div>
+                <div class="search-values">
+                    <div class="row row-cols-2">
+                        <form id="air-search-form">
+                            <div class="col text-center search-value">
+                                <div class="value-box">
+                                    <span>출발지</span><br>
+                                    <select id="start-location">
+                                        <option>김포</option>
+                                        <option>서울</option>
+                                        <option>부산</option>
+                                    </select>
+                                </div>
+                                <div class="value-box">
+                                    <span>도착지</span><br>
+                                    <select>
+                                        <option>제주도</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col text-center search-value">
+                                <div class="value-box">
+                                    <span>인원</span><br>
+                                    <select id="people-num">
+                                        <option>0명</option>
+                                        <option>1명</option>
+                                        <option>2명</option>
+                                        <option>3명</option>
+                                        <option>4명</option>
+                                    </select>
+                                </div>
+                                <div class="value-box">
+                                    <span>항공구분</span><br>
+                                    <select id="end-location-d">
+                                        <option>왕복</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="search-submit" >
+                    <button id="search-submit-btn">항공권 검색</button>
+                </div>
+                </form>
+            </div>
+                <div class="result">
+                    <div class="row result-value">
+                        <div class="col-4">
+                            <h5>🛫 </h5>
+                            <span>인천</span> ➟︎
+                            <h5> 🛩</h5>
+                            <span>제주</span>
+                        </div>
+                        <div class="col-4">
+                            <span id="start-date">2022-05-02</span>
+                            <span>~</span>
+                            <span id="end-date">2022-05-04</span>
+                        </div>
+                        <div class="col-4">
+                            👤 ️<span> 인원</span>
+                            <span id="people-cnt"> 0명</span>
+                        </div>
+                    </div>
+                    <div class="row row-cols-2 result-container">
+                        <div class="col">
+                            <!-- 가는 편   -->
+                            <div class="d-flex justify-content-between sort">
+                                <div>
+                                    <span class="fly-img">🛫</span><h5>가는편</h5>
+                                </div>
+                                <div>
+                                    <select>
+                                        <option>출발시간순</option>
+                                        <option>무순</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between sort">
+                                <div style="font-weight: bold" class="sort-title">
+                                    제주 -> <span id ="location-s">선택</span>
+                                </div>
+
+                            </div>
+                            <!-- 테이블 -->
+                            <div class="result-table">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">&nbsp;&nbsp;</th>
+                                        <th scope="col">항공사</th>
+                                        <th scope="col">출발</th>
+                                        <th scope="col">도착</th>
+                                        <th scope="col">1인요금</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="air-code1">
+                                        <!-- Data -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- 오는 편  -->
+                        <div class="col">
+                            <div class="d-flex justify-content-between sort">
+                                <div>
+                                    <span class="fly-img">🛩</span> <h5> 오는편</h5>
+                                </div>
+                                <div>
+                                    <select>
+                                        <option>출발시간순</option>
+                                        <option>무순</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between sort">
+                                <div style="font-weight: bold">
+                                    <span id ="location-d">선택 </span>-> 제주
+                                </div>
+                            </div>
+                            <!-- 테이블 -->
+                            <div class="result-table">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">&nbsp;&nbsp;</th>
+                                        <th scope="col">항공사</th>
+                                        <th scope="col">출발</th>
+                                        <th scope="col">도착</th>
+                                        <th scope="col">1인요금</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="air-code2">
+                                        <!-- Data -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between payment">
+                        <div class="caution">
+                                <span>즉시 결제하지 않으면 예약이 자동 취소됩니다. (예약과 동시결제)
+                                    <br>* 본 요금은 발권대행수수료 (편도 1인당 1천원) 포함금액입니다.
+                                </span>
+                        </div>
+                        <div class="position-relative">
+                            <div class="float-lg-start">
+                                <span>총결제 예정금액</span>
+                                <h3 id="price-sum">0원</h3>
+                            </div>
+                            <div class="float-lg-end">
+                                 <button>결제하기</button>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="result">
-        </div>
-
-
-
-
     </div>
+<br><br>
 </div>
 
 </body>
-<script>
-    function view(arg) {
-        var t1 = document.getElementById("tb1");
-        var t2 = document.getElementById("tb2");
+    <script src="./reserv.js" type="module"></script>
 
-        if(arg == 1) {
-            t1.style.display="block";
-            t2.style.display="none";
-        }
-        else {
-            t2.style.display="block";
-            t1.style.display="none";
-        }
-    }
-</script>
 
 
 

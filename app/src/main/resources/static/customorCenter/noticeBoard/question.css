@@ -1,0 +1,210 @@
+
+  .container {                        /*question 컨테이너*/
+   width:100%;
+    height:100%;
+    background:.000;
+  }
+  .body {
+    width:70%;
+    height:600px;
+    margin: auto;
+    background-color: white;  /** 작업 끝나면 흰색으로 **/
+  }
+  
+  .body-a {                       /*질문창 머리*/
+    margin: auto;
+    width: 70%;
+    height: 50px;
+  }
+  .question {
+    position:absolute;
+    font-size:20px;
+    font-weight:bold;
+    padding: 10px;
+  }
+  
+  .body-b {                                 /* 안내창 */
+  width: 100%;
+  height: 100px;
+  margin: auto;
+  }
+  
+  .s-text {
+  background-color: white;
+  margin: auto;
+  border-style: solid;
+  border-color: #c5c5c5;
+  border-width: 8px;
+  }
+
+  .body-c {                           /* question 컨텐츠 몸통 */
+  width: 100%;
+  margin: auto;
+  padding-top: 20px;
+  background-color: #f9f9f9;
+  }
+  
+  .c-1 {                 /* question 1번 폼*/
+  width: 80%;
+  height: 130px;
+  margin: auto;
+  background-color: #eeeeee;
+  display: flex;
+  }
+  
+  .img-1 {
+  position: relative;
+  width: 100px;
+  height: 80px;
+  top: 25px;
+  }
+  
+  .text-1{
+  width: 400px;
+  height: 80px;
+  margin: auto;
+  float: right;
+  font-size: 1.2ex;
+   text-align: left;
+  }
+  
+  
+  .c-2 {                 /* question 2번 폼*/
+  width: 80%;
+  margin: auto;
+  background-color: #f9f9f9;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  }
+  
+  .c-2-head {           /* c-2항목 머리 */
+  position:relative;
+  width: 100%;
+  height: 40px;
+  top: 10px;
+  background-color: #eeeeee;
+  border-style: solid;
+  border-width: 3px;
+  border-bottom-style: none;
+  border-color: #e9e9e9;
+  display: flex;
+  justify-content: flex-start;
+  }
+  .c-2-t {
+  width: 50px;
+  height: 25px;
+  margin: auto;
+  }
+  .title {
+  border: 1px solid #F1F1F1;
+  width: 80%;
+  height: 60%;
+  margin: auto;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e9e9e9;
+  }
+  
+  .c-2-body {                   /* c-2항목 몸통 */
+  position: relative;
+  width: 100%;
+  height: 180px;
+  top: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  background-color: #f9f9f9;
+  border-style: solid;
+  border-width: 3px;
+  border-top-style: none;
+  border-color: #e9e9e9;
+  }
+  
+  .content {
+  width:80%; 
+  height:50%; 
+  font-size:30px;
+  }
+  
+  .dbt {
+  position: relative;
+  top:20px;
+  }
+  
+  
+  .c-3{
+  width: 100%;
+  margin-top: 20px;
+  }
+  #registration {                       /*하단 등록*/
+  position: relative;
+  float: right; 
+  background-color: orange;
+  color: white;
+  font-size:15px;
+  margin: 3px;
+  border-style: solid;
+  border-width: thin;
+  border-color: orange;
+  border-radius: 3px;
+  cursor:pointer;
+  }
+  
+  .sp{
+  display: flex;
+  justify-content: space-between;
+  }
+  #cancel {
+  position: relative;
+  float: right; 
+  background-color: white;
+  color: black;
+  font-size:15px;
+  margin: 3px;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 3px;
+  cursor:pointer;
+  }
+  
+  
+                                /* 모달창 */
+
+#modal {
+  position:relative;
+  text-align: center;
+  width:100%;
+  height:100%;
+  z-index:1;
+  bottom: 500px;
+  display: none;
+}
+
+#modal button {
+  display:inline-block;
+  width:100px;
+  margin-left:calc(100% - 100px - 10px);
+}
+
+#modal .modal_content {
+  width:300px;
+  margin:100px auto;
+  padding:20px 10px;
+  background:#fff;
+  border:2px solid #666;
+}
+
+#modal .modal_layer {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0, 0, 0, 0.5);
+  z-index:-1;
+}
+.content{
+	font-size: 15px;
+	
+}
+

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>예약페이지</title>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="reserv2_detail.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css" />
+
+
+    <script>
+        $(document).ready(function () {
+            $('.headers').load('../common/header/header.html');
+        });
+    </script>
+</head>
+
+<body>
+<!--헤더영역 -->
+<div class="headers"></div>
+<!-- 바디영역-->
+<div class="container w-75" id ="wrap">
+    <div class="mini-container">
+        <div class="tap-menu">
+            <div class="row row-cols-md-2 text-center">
+                <button class ="col-4 tap-uncheck" id="air-link-btn">항공권</button>
+                <button class ="col-4 tap-check">숙박</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="detail-container">
+            <div class="w-75 m-auto">
+                <h2 id="x-hotelName"></h2>
+                <span class="fw-bold fs-6">숙박유형</span>&nbsp&nbsp&nbsp<span>호텔</span>&nbsp&nbsp
+                <span class="fw-bold fs-6">주소</span>&nbsp&nbsp&nbsp<span id="x-hotelLocation">제주특별자치도 제주시 노연로53</span>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
+                <span class="fw-bold fs-6">체크인</span>&nbsp&nbsp&nbsp<span>15:00</span>&nbsp&nbsp
+                <span class="fw-bold fs-6">체크아웃</span>&nbsp&nbsp&nbsp<span>11:00</span>&nbsp&nbsp
+            </div>
+            <div class="img-container">
+                <div class="img-box">
+                    <div class="bic-img">
+                        <div
+                                id="carouselExampleInterval"
+                                class="carousel slide w-75 align-self-center m-auto"
+                                data-bs-ride="carousel"
+                                style="border-radius: 10px"
+                        >
+                            <div class="carousel-inner" style="display: flex">
+                                <div class="carousel-item active" data-bs-interval="4000">
+                                    <img
+                                            src="http://a.cdn-hotels.com/gdcs/production13/d298/6722a536-dc90-49b4-9987-4c0ce03105cc.jpg?impolicy=fcrop&w=1600&h=1066&q=medium"
+                                            class="d-block h-auto w-100"
+                                            alt="..."
+                                            style="border-radius: 20px"
+                                            id="x-testImg-1"
+                                    />
+                                </div>
+                                <div class="carousel-item" data-bs-interval="4000">
+                                    <img
+                                            src="http://a.cdn-hotels.com/gdcs/production153/d1329/551a0385-f7e0-4f7c-a407-43bdecddd4d4.jpg?impolicy=fcrop&w=1600&h=1066&q=medium"
+                                            class="d-block h-auto w-100"
+                                            alt="..."
+                                            style="border-radius: 20px"
+                                            id="x-testImg-2"
+                                    />
+                                </div>
+                                <div class="carousel-item" data-bs-interval="4000">
+                                    <img
+                                            src="http://a.cdn-hotels.com/gdcs/production18/d313/28d7ddb1-12c5-4b47-b355-515eb4db0870.jpg?impolicy=fcrop&w=1600&h=1066&q=medium"
+                                            class="d-block h-auto w-100"
+                                            alt="..."
+                                            style="border-radius: 20px"
+                                            id="x-testImg-3"
+                                    />
+                                </div>
+                                <button class="like-btn align-self-end">
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="30"
+                                            height="30"
+                                            fill="currentColor"
+                                            class="bi bi-heart"
+                                            viewBox="0 0 16 16"
+                                    >
+                                        <path
+                                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
+                                        />
+                                    </svg>
+                                </button>
+                                <span class="like-cnt align-self-end">2000</span>
+                            </div>
+                            <button
+                                    class="carousel-control-prev"
+                                    type="button"
+                                    data-bs-target="#carouselExampleInterval"
+                                    data-bs-slide="prev"
+                            >
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button
+                                    class="carousel-control-next"
+                                    type="button"
+                                    data-bs-target="#carouselExampleInterval"
+                                    data-bs-slide="next"
+                            >
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- img contianer -->
+
+            <div class="info-container w-75 m-auto">
+                <div class="out-line"></div>
+                <div class="search-values w-100">
+
+                    <div class="search-value">
+                        <p>(체크인)</p>
+                        <span>2022-03-02</span>
+
+                    </div>
+                    <div class="search-value">
+                        <p>(체크아웃)</p>
+                        <span>2022-03-04</span>
+                    </div>
+                    <div class="search-value">
+
+                    </div>
+                    <div class="search-value">
+                        <h2 id="x-hotelPrice"></h2>
+                        <button type="submit">결제하기</button>
+                    </div>
+                </div>
+
+
+                <div class = "result-info w-100">
+                    <h5>숙소소개</h5>
+                    <div class="out-line"></div>
+                    <p>
+                        <span id="x-hotelComment"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+</body>
+<script src="./reserv2_detail.js" type="module"></script>
+
+</html>

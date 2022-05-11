@@ -1,108 +1,68 @@
- #header {                         /* 머리 전체  */
-  height: 50px;
-  padding-top: 10px;
-  border-bottom-style: solid;
-  border-color: gray;
-  }
-  #main-btn {
-    color:orange;
-    font-weight:bold;
-    background-color:white;
-    font-size:20px;
-    border:0;
-    outline:0;
-    font-size: 1.5em;
-    font-family: "Comic Sans MS";
-  }
-    #img-2 {
-  position: relative;
-  float : right;
-  width: 50px;
-  top: 8%;
-  }
-  #user-btn {
-    float:right;
-    color:orange;
-    background-color:white;
-    font-size:20px;
-    border:0;
-    outline:0;
-    font-size: 1.5em;
-    font-family: "Comic Sans MS";
-  }
-  
-  #container {                        /*고객센터 컨테이너*/
+
+  .container {                        /*고객센터 컨테이너*/
    width:100%;
     height:100%;
-    background:#000;
+    background:.000;
   }
-  #body {
-    width:600px;
+  .body {
+    width:90%;
     height:600px;
     position:absolute;
-    left:50%;
-    top:60%;
-    margin-left:-300px;
-    margin-top:-300px;
-    background-color: #f9f9f9;
+    background-color: white;  /** 작업 끝나면 흰색으로 **/
   }
   
-  #body-a {                       /*고객센터 머리*/
-    position:absolute;
-    width:500px;
+  .body-a {                       /*고객센터 머리*/
+    width:70%;
     height:50px;
-    top: 5%;
-    left:10%;
-    border-bottom-style: solid;
+    margin: auto;
+    background-color: #f1f1f170;
     border-bottom:thick solid;
     border-color: #F3E3B0;
   }
-  #img-1 {
-	  position: relative;
-	  width: 10%;
-	  bottom: 10%;
-	  }
+  .img-1 {
+    position: relative;
+    width: 50px;
+    }
   
-  #Service-center {
+  .Service-center {
     position:absolute;
     font-size:20px;
     font-weight:bold;
+    margin: 8px;
   }
-  #all-btn {
+  .all-btn {
     background-color: white;
     float:right;
     border:solid;
     border-color: gray;
+    margin: 8px;
   }
   
-  #body-b {                                 /* 검색창 */
-  position: relative;
-  width: 400px;
-  height: 30px;
-  margin: 10px auto;
-  top: 13%;
+  .body-b {                                 /* 검색창 */
+		position: relative;
+		width: 70%;
+		height: 120px;
+		margin: auto;
+		background-color: #f1f1f170;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  #search {
-  border: 1px solid #F1F1F1;
-  border-radius: 50px;
-  width: 100%;
-  height: 150%;
-  padding-left: 60px;
-  }
-  #search-img {
-  position : absolute;
-  width: 20px;
-  height: 20px;
-  top:40%;
-  left:5%;
-  }
-  
-  #body-c {                           /* 인기 검색어 */
-  position: relative;
-  width: 400px;
-  height: 30px;
-  margin: 10px auto;
-  top: 14%;
+  .search {
+    border: 1px solid #F1F1F1;
+    border-radius: 50px;
+    width: 70%;
+    height: 40px;
+    padding-left: 60px;
+    left: 150px;
+    margin: 15px;
+    background:url("https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" )no-repeat;
+
+    }
+  .s-img{
+    background-color: white;
+    background-size: 30px 30px;
+    background-position: 10px;
   }
 
   .a-button {
@@ -111,18 +71,24 @@
   color: orange;
   margin: 3px;
   }
+  
+  .a-tb {
+    caption-side: bottom;
+    border-collapse: collapse;
+    display: flex;
+    justify-content: center;
+}
 
-
-  #body-d {                           /* 공지사항 */
+  .body-d {                           /* 공지사항 */
   position:relative;
-  width:500px;
-  height:100px;
-  top:15%;
-  left:10%;
+  width:70%;
+  height:50px;
   background-color: #f9f9f9;
-  border-top-style: solid;
   border-top:thick solid;
   border-color: #F3E3B0;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
   }
   
   .b-button {
@@ -133,6 +99,8 @@
   color: black;
   font-size:15px;
   font-weight:400;
+  border: 3px;
+  border-style: ridge;
   }
   
   .clicked {
@@ -140,30 +108,51 @@
   background-color: orange;
   }
   
-  #body-e {
+  .body-e {
   position:relative;
   background-color: #f9f9f9;
-  top: 10%;
-  }
-
-  #tb1 {
-  position: absolute;
-  left: 10%;
-  }
-  #tb2 {
-  position: absolute;
-  display: none;
-  left: 10%;
+  width: 70%;
+  margin: auto;
   }
   
   .c-button {
-  font-size: 15px;
-  border: 0;
-  background-color: #f9f9f9;
-  margin: 3px;
+   font-size: 15px;
+   width: 530px;
+   background-color: #f9f9f9;
+   margin: 3px;
+   display: flex;
+   border-bottom: 1px solid orange;
+   border-top: 0;
+   border-right: 0;
+   border-left: 0;
+  }
   
+    #tb1 ,#tb2{                      
+  table-layout:fixed;
+  border-collapse: collapse;
+  }  
+  #tb1 th, #tb2 th {
+   background: #dfdfdf;
+   text-align: center;
+  }
+  #tb1 th, #tb1 td, #tb2 th, #tb2 td {
+  padding: 3px;
+  width: 500px;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  }
+
+  .tb1 tr td:first-child, .tb2 tr td:first-child{
+  text-align: center;
+  }
+  
+  .content {
+    background-color:rgb(255, 210, 128);
+    display:none;
+    height:30px;
   }
   
   
   
-

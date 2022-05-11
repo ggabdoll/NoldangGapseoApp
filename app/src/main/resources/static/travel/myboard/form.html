@@ -9,32 +9,18 @@
         <link rel="stylesheet" href="../../node_modules/sweetalert2/dist/sweetalert2.min.css" />
         <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css" />
         <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../../node_modules/axios/dist/axios.js"></script>
         <link rel="stylesheet" href="form.css" />
     </head>
     <body>
         <div class="container d-flex flex-column">
-            <div class="bi-j">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="30"
-                    height="30"
-                    fill="currentColor"
-                    class="bi bi-arrow-left"
-                    viewBox="0 0 16 16"
-                    style="margin-bottom: 50px; margin-top: 50px"
-                >
-                    <path
-                        fill-rule="evenodd"
-                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
-                    />
-                </svg>
-            </div>
-            <form class="d-form d-flex flex-column align-items-center">
+            <form class="d-form d-flex flex-column align-items-center" name="form-d">
+                <input type="hidden" name="userId" id="d-user" />
                 <p class="col-text">여행지의 이름을 적어주세요</p>
                 <div class="d-title d-box col-md-7">
                     <input
                         type="text"
-                        name="title"
+                        name="destinationName"
                         id="in-title"
                         class="w-75 input-group-text x-in"
                         placeholder="여기에 작성해주세요"
@@ -47,15 +33,26 @@
                 <div class="d-adress col-md-7 d-box">
                     <input
                         type="text"
-                        name="adress"
+                        name="address"
                         id="in-adress"
                         class="w-75 input-group-text x-in"
                         style="margin-left: 4em"
                         readonly
                     />
                 </div>
+                <p class="col-text">여행지의 전화번호를 적어주세요</p>
+                <div class="d-phone col-md-7 d-box">
+                    <input
+                        type="text"
+                        class="w-75 input-group-text x-in"
+                        name="phone"
+                        id="in-phone"
+                        placeholder="여기에 작성해주세요"
+                    />
+                </div>
                 <p class="col-text">여행지의 종류를 선택해주세요</p>
                 <div class="d-tag d-box col-md-7 justify-content-evenly">
+                    <input type="hidden" name="destinationTypeId" id="tag-d" />
                     <button
                         class="tag-btn btn btn-outline-primary col-sm-2"
                         data-val="1"
@@ -92,10 +89,12 @@
                         placeholder="여기에 작성해주세요"
                     ></textarea>
                 </div>
-                <p class="col-text">사진의 올려주세요</p>
-                <div class="d-file d-box col-md-7">
-                    <input type="file" multiple class="d-file-up" name="" id="" />
-                </div>
+                <p class="col-text">
+                    사진의 올려주세요
+                    <label for="imgs">사진찾기</label>
+                    <input type="file" multiple class="d-file-up" name="imgs" id="imgs" />
+                </p>
+                <div class="d-file d-box col-md-7"></div>
             </form>
             <div
                 class="d-flex w-75 align-self-center justify-content-center d-btn"

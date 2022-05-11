@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>호텔 예약페이지</title>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="reserv2.css">
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css" />
+
+
+  <script>
+    $(document).ready(function () {
+      $('.headers').load('../common/header/header.html');
+    });
+  </script>
+</head>
+
+<body>
+<!--헤더영역 -->
+<div class="headers"></div>
+<!-- 바디영역-->
+  <div class="container w-75" id ="wrap">
+    <div class="mini-container">
+      <div class="tap-menu">
+        <div class="row row-cols-md-2 text-center">
+          <button class ="col-4 tap-uncheck" id="air-link-btn">항공권</button>
+          <button class ="col-4 tap-check">숙박</button>
+        </div>
+      </div>
+      <div class="content-title" >
+        <h2>실시간 숙박시설 가격비교</h2>
+        <p class="mt-3">제주도 내 6천여개 다양한 숙박시설을 한눈에 보고 예약</p>
+      </div>
+      <div class="out-line"></div>
+
+      <div class ="search">
+        <div class="w-100 search-option">
+        </div><!--search option-->
+        <div class="search-values">
+          <div class="search-value">
+            <p>(숙박지)</p>
+            <span>제주도</span>
+          </div>
+          <div class="search-value">
+            <p>(체크인)</p>
+            <span id="start-date"></span>
+
+          </div>
+          <div class="search-value">
+            <p>(체크아웃)</p>
+            <span id="end-date"></span>
+          </div>
+          <div class="search-value">
+            <button id="search-btn">검색하기</button>
+          </div>
+        </div>
+      </div>
+    </div><!--end mini container-->
+    <div class="out-line"></div>
+    <div class="result-container">
+      <div class="tap-menu">
+        <div class="row row-cols-sm-2 text-center">
+          <button class ="col-1 tap-check">전체</button>
+          <button class ="col tap-uncheck">호텔</button>
+        </div>
+      </div>
+      <div class="result-box">
+        <ul class="result-list">
+            <!--호텔 리스트 -->
+        </ul>
+      </div>
+    </div>
+    </div>
+    <div> </div>
+  </body>
+<script src="./reserv2.js" type="module"></script>
+
+
+</html>

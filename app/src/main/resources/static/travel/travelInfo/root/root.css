@@ -1,3 +1,7 @@
+.container {
+    padding-top: 3%;
+}
+
 .map {
     height: 60vh;
     margin-top: 5%;
@@ -26,6 +30,12 @@
     align-items: center;
     cursor: pointer;
 }
+.dayNum {
+    color: rgb(251, 147, 0);
+}
+.swiper-slide:hover {
+    color: rgb(251, 147, 0);
+}
 
 @media (max-width: 760px) {
     .swiper-button-next {
@@ -44,7 +54,7 @@
 }
 .root-container {
     margin-top: 3em;
-    height: 60vh;
+    height: 70vh;
 }
 .number-container,
 .des-container {
@@ -76,9 +86,12 @@
 
 .des-box {
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-    height: 25%;
+    height: 30%;
     padding: 1% 0px;
-    margin-bottom: 5%;
+    margin-bottom: 8%;
+}
+.des-header {
+    margin-bottom: 30px;
 }
 
 .d-kinds {
@@ -118,4 +131,12 @@
 }
 .bi-chevron-bar-expand {
     font-weight: bolder;
+}
+.marker {
+    background-color: #f1c40f;
+    width: 25px;
+    height: 25px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
 }

@@ -1,0 +1,121 @@
+
+  .container {                        /*고객센터 컨테이너*/
+   width:100%;
+    height:100%;
+    background:.000;
+  }
+  .body {
+    width:90%;
+    height:600px;
+    position:absolute;
+    background-color: white;  /** 작업 끝나면 흰색으로 **/
+  }
+  
+  .body-a {                       /*고객센터 머리*/
+    margin: auto;
+    width: 70%;
+    height: 50px;
+  }
+  
+  .myq {
+    position:absolute;
+    font-size:20px;
+    font-weight:bold;
+    top: 10px;
+  }
+    
+
+  .body-b {                                 /* 검색창 */
+  width: 70%;
+  height: 100px;
+  margin: 10px auto;
+  background-color: white;
+  }
+  .s-text {
+  width: 100%;
+  height: 80px;
+  background-color: white;
+  margin: auto;;
+  border-style: solid;
+  border-color: #c5c5c5;
+  border-width: 5px;
+  }
+  
+  .body-d {                           /* 공지사항 헤드 */
+  position: relative;
+  width: 600px;
+  top: 12.5%;
+  }
+
+  
+  .body-e {                 /* 공지사항 메인 폼*/
+  width: 70%;
+  margin: auto;
+  background-color: #f9f9f9;
+  color: black;
+  }
+ 
+    
+  .view-box {                   /*공지테이블*/
+  position:relative;
+  top:5px;
+  display: flex;
+  justify-content: space-between;
+  }
+  .view {
+  height: 30px;
+  }
+  #tb1 {                      
+  table-layout:fixed;
+  border-collapse: collapse;
+  }  
+  #tb1 th {
+   background: #dfdfdf;
+   text-align: center;
+  }
+  #tb1 th, #tb1 td {
+  padding: 3px;
+  width: 600px;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  }
+
+  
+  
+  .back {                       /*하단 뒤로가기*/
+  float: right; 
+  background-color: white;
+  color: black;
+  font-size:15px;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 3px;
+  border-color: #dfdfdf;
+  margin: 3px;
+  cursor:pointer;
+  z-index:1;
+  }
+  .back:focus {
+  background-color: orange;
+  color: white;
+  }
+  
+  
+  .page {
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    bottom: 100px;
+  }
+  
+  .page-a{
+  padding: 5px;
+  border: 1px solid #ddd;
+  
+  }
+  .page-a:focus {
+  background-color: orange;
+}

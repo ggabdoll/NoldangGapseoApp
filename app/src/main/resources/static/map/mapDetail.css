@@ -1,6 +1,19 @@
+@font-face {
+    font-family: 'SuncheonR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/SuncheonR.woff')
+        format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .container {
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.carousel-item {
+    height: 65vh;
+}
+img {
+    object-fit: fill;
 }
 
 .des-info {
@@ -17,23 +30,27 @@
     text-align: center;
     margin-top: 70px;
 }
+.like-box {
+    align-items: center;
+}
 
 .like-btn {
     border: 0;
     outline: 0;
     background-color: transparent;
-    z-index: 3;
-    color: white;
-    margin-bottom: 8px;
+    /* color: rgb(251, 147, 0); */
     margin-left: 8px;
 }
 
+.l-check > svg {
+    background-color: transparent;
+    fill: rgb(245, 71, 72);
+}
+
 .like-cnt {
-    color: white;
-    z-index: 3;
+    color: rgb(251, 147, 0);
     font-size: 25px;
     margin-left: 5px;
-    margin-bottom: 8px;
 }
 
 .des-detail {
@@ -101,4 +118,27 @@
     width: 36vw;
     height: 1px;
     background-color: black;
+}
+
+.c-rud {
+    color: darkgrey;
+}
+.c-rud * {
+    margin-right: 5px;
+    cursor: pointer;
+}
+.add-comment {
+    border: 1px solid rgb(251, 147, 0);
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    position: fixed;
+    top: 90vh;
+    z-index: 30;
+    margin-right: 15%;
+    align-self: end;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 2px;
+    cursor: pointer;
 }

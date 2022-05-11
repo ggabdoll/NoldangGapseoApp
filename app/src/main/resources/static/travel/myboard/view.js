@@ -1,3 +1,69 @@
+import { getDes, getLoginUser, deleteDes, updateDes } from '../../common/api/apiList.js';
+import { urlSearch } from '../../common/urlSearchParam.js';
+
+// ---- URLSearchParams ----
+const no = urlSearch('desId');
+
+// ---- 회원정보 가져오기 ----
+let user;
+// ---- reponse 변수 ----
+let destinationId;
+
+let desTypeId;
+
+// ---- 화면 렌더링 ----
+(async function () {
+    user = await getLoginUser();
+    const response = await getDes(no, 'U');
+
+    destinationId = response.destination.destinationId;
+
+    desTypeId = response.destination.destinationTypeId;
+    // ---- 사진 리스트 ----
+    const imgList = response.destinationImgList;
+    //const firstImg = response.destinationImList[0];
+
+    imgList?.map((m, index) => {
+        // ---- 첫번째 사진 ----
+        const firstImgView = `     
+        <div class="carousel-item active" data-bs-interval="3000" data-imgId=${m.destinationImgId}>
+            <img
+            src=/destination/img?filename=${m.img}
+            class="d-block h-auto w-100"
+            alt="..."
+            style="border-radius: 20px"
+            />
+        </div>
+        `;
+        // ---- 나머지 사진 ----
+        const otherImgView = `     
+        <div class="carousel-item" data-bs-interval="3000" data-imgId=${m.destinationImgId}>
+            <img
+            src=/destination/img?filename=${m.img}
+            class="d-block h-auto w-100"
+            alt="..."
+            style="border-radius: 20px"
+            />
+        </div>
+        `;
+
+        // ---- map의 인덱스에 따라 다른 화면을 렌더링 해준다 (active 때문) ----
+        index == 0
+            ? $('.carousel-inner').append(firstImgView)
+            : $('.carousel-inner').append(otherImgView);
+    });
+
+    const title = response.destination.destinationName;
+    const type = response.destination.destinationTypeName;
+    const address = response.destination.address;
+    const contents = response.destination.contents;
+    const phone = response.destination.phone;
+    $('.in-title').val(title);
+    $('#in-address').val(address);
+    $('#in-contents').val(contents);
+    $('#in-phone').val(phone);
+})();
+
 // ----뒤로가기 화살표-----
 $('.bi').on('click', function (e) {
     e.preventDefault();
@@ -5,7 +71,7 @@ $('.bi').on('click', function (e) {
 });
 
 // ---- 주소 검색 ----
-$('#in-adress').on('click', function (e) {
+$('#in-address').on('click', function (e) {
     e.preventDefault();
     findAddr();
 });
@@ -22,13 +88,23 @@ function findAddr() {
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             //document.querySelector('member_post').value = data.zonecode;
             if (roadAddr !== '') {
-                document.querySelector('#in-adress').value = roadAddr;
+                document.querySelector('#in-address').value = roadAddr;
             } else if (jibunAddr !== '') {
-                document.querySelector('#in-adress').value = jibunAddr;
+                document.querySelector('#in-address').value = jibunAddr;
             }
         },
     }).open();
 }
+
+// ---- Delte Destination function ----
+const delDes = async () => {
+    const delteRes = await deleteDes(destinationId);
+    if (delteRes.resCode == '0000') {
+        Swal.fire('삭제되었습니다.', '', 'success');
+        location.href = '/travel/myboard/myboard.html';
+        return;
+    }
+};
 
 // ---- Delete Event ----
 $('.btn-danger').on('click', function (e) {
@@ -37,9 +113,33 @@ $('.btn-danger').on('click', function (e) {
         showCancelButton: true,
         confirmButtonText: 'Delete',
     }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            Swal.fire('삭제되었습니다.', '', 'success');
+            delDes();
+            return;
         }
     });
+});
+
+const des = {
+    destinationId: destinationId,
+    destinationName: $('.in-title').val(),
+    address: $('.in-address').val(),
+    phone: $('.in-phone').val(),
+    contents: $('.in-contents').val(),
+    destinationTypeId: '',
+};
+// ---- Update Event ----
+$('#update-btn').on('click', async function (e) {
+    des.destinationId = destinationId;
+    des.destinationName = $('.in-title').val();
+    des.address = $('#in-address').val();
+    des.phone = $('#in-phone').val();
+    des.contents = $('#in-contents').val();
+    des.destinationTypeId = desTypeId;
+    e.preventDefault();
+    e.stopPropagation();
+    const updateRes = await updateDes(des);
+    if (updateRes.resCode == '0000') {
+        location.href = '/travel/myboard/myboard.html';
+    }
 });

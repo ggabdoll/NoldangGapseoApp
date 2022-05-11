@@ -2,12 +2,26 @@
     font-family: 'Cooper';
     src: url('../../asset/font/Cooper\ Black\ BT.ttf') format('ttf');
 }
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* {
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
+        'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+}
+
+@font-face {
+    font-family: 'SuncheonR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/SuncheonR.woff')
+        format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .container {
     display: flex;
     padding: 0;
     flex-direction: column;
-    margin-bottom: 30px;
+    margin-bottom: 30vh;
 }
 .mini-container {
     display: flex;
@@ -39,7 +53,7 @@
     border-radius: 10px;
     font-size: 30px;
     font-weight: bold;
-    font-family: 'Comic Sans MS';
+    font-family: 'SuncheonR';
 }
 .travel-period {
     border: 1px solid rgb(251, 147, 0);
@@ -64,7 +78,8 @@
     margin-bottom: 10px;
 }
 .invite-box > div {
-    font-family: 'Comic Sans MS';
+    font-family: 'SuncheonR';
+    font-weight: bold;
 }
 .invite-btn {
     width: 30px;
@@ -93,9 +108,11 @@
     text-overflow: ellipsis;
     overflow: hidden;
     width: 200px;
+    font-family: 'SuncheonR';
+    font-weight: bold;
 }
 .travel-cost {
-    height: 12%;
+    height: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,7 +125,7 @@
     font-family: 'Comic Sans MS';
 }
 .travel-weather {
-    height: 12%;
+    height: 2em;
     border: 1px solid rgb(251, 147, 0);
     border-radius: 10px;
     font-weight: bold;
@@ -116,10 +133,13 @@
     padding-top: 5px;
     font-family: 'Comic Sans MS';
 }
-.travel-tag {
+.right-box {
     border: 1px solid rgb(251, 147, 0);
     border-radius: 10px;
-    height: 70%;
+}
+.travel-tag {
+    border-radius: 10px;
+    height: 20em;
 }
 .tag-colum {
     padding-top: 3%;
@@ -130,15 +150,22 @@
     font-size: larger;
     font-family: 'Comic Sans MS';
 }
-.travel-root {
-    border: 1px solid rgb(251, 147, 0);
-    border-radius: 10px;
-    height: 70%;
+.travel-route {
+    height: 20em;
+}
+.route-img {
+    height: 81%;
+    object-fit: fill;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .travel-todo {
-    height: 70%;
-    border: 1px solid rgb(251, 147, 0);
-    border-radius: 10px;
+    height: 20em;
+}
+.todo {
+    margin: 4%;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .modal-content {
@@ -177,4 +204,54 @@
 }
 .name-input:focus {
     outline: none;
+}
+
+.delete-btn {
+    background-color: rgb(245, 71, 72);
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Comic Sans MS';
+    color: white;
+    cursor: pointer;
+}
+.col-sm-6 {
+    cursor: pointer;
+}
+.tagList {
+    overflow: scroll;
+    height: 100%;
+    padding: 5px;
+}
+.tagList::-webkit-scrollbar {
+    display: none;
+}
+
+.tag {
+    border: 1px solid rgb(251, 147, 0);
+    border-radius: 10px;
+    font-size: 13px;
+    height: 10%;
+    margin: 3px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'SuncheonR';
+}
+
+.search-box {
+    margin-top: 24%;
+    margin-left: 22%;
+    position: absolute;
+    z-index: 9999999;
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.s-nickName {
+    margin-top: 10px;
+    height: 5vh;
+    cursor: pointer;
+}
+.s-nickName:hover {
+    background-color: #eeee;
 }

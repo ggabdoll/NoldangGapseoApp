@@ -2,15 +2,11 @@
     margin-bottom: 20px;
 }
 
-.bi-j :hover {
-    border: 2px solid #fb9300;
-    border-radius: 20px;
-}
-
 .content {
     border: 2px solid black;
     border-radius: 30px;
     padding: 5%;
+    margin: 5%;
 }
 .input-group-text {
     border: 0px;
@@ -31,12 +27,12 @@
     margin-bottom: 10px;
 }
 
-.adress {
+.address {
     margin: 2em 0px;
 }
-#in-adress {
+#in-address {
     right: 0px;
-    text-align: end;
+    text-align: right;
     color: #d1d1d1;
 }
 
@@ -44,4 +40,7 @@
     border: 1px solid black;
     border-radius: 20px;
     padding: 2%;
+}
+#in-contents {
+    text-align: left;
 }
